@@ -5,7 +5,7 @@ import "firebase/auth";
   // Your web app's Firebase configuration
   const config  =  
   {
-    apiKey: "AIzaSyCk7N8tb9Dxauxw7vDLOUEkMKCEKul2b2Y",
+    apiKey: "",
     authDomain: "site-ecommerce-98bf9.firebaseapp.com",
     projectId: "site-ecommerce-98bf9",
     storageBucket: "site-ecommerce-98bf9.appspot.com",
