@@ -2,8 +2,8 @@ const SubCat = require('../models/SubCat')
 const slugify = require ('Slugify')
 exports.create = async (req,res) => {
 try{
-const {name} = req.body
-const SubCat = await new SubCat({name,slug: slugify (name)}).save();
+const {name,parent} = req.body
+const SubCat = await new SubCat({name,parent,slug: slugify (name)}).save();
 res.json(SubCat);
 }
 catch(err) {
@@ -28,9 +28,9 @@ exports.list = async (req,res) => {
     }
 }
 exports.update = async (req,res) => {
-    const {name} = req.body;
+    const {name, parent} = req.body;
     try{
-        const updated = await SubCat.findOneAndUpdate( {slug: req.params.slug}, {name,slug: slugify (name)},{new: true})
+        const updated = await SubCat.findOneAndUpdate( {slug: req.params.slug}, {name,slug: slugify (name),parent},{new: true})
         res.json(updated)
 
     }

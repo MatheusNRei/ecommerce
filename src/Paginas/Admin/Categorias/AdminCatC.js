@@ -6,6 +6,7 @@ import {createCat,getCatList,deleteCat} from '../../../Funcoes/cat'
 import {Link} from "react-router-dom";
 import {EditOutlined,DeleteOutlined} from '@ant-design/icons'
 import CatForm from '../../../Componente/Forms/CatForm'
+import SearchForm from '../../../Componente/Forms/SearchForm'
 
 
 const AdminCatC = () =>{
@@ -19,7 +20,7 @@ const AdminCatC = () =>{
         loadCat();
     },[]);
 
-    const loadCat = () => getCatList().then(c => setCategorias(c.data));
+    const loadCat = () => getCatList().then((c) => setCategorias(c.data));
     const handleSubmit = (e) =>{
         e.preventDefault();
         setLoading(true);
@@ -55,10 +56,8 @@ const AdminCatC = () =>{
        })
     }
 }
-const handleSearchChange= (e) => {
-    e.preventDefault()
-    setKeyword(e.target.value.toLowerCase())
-}
+
+
 
 const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword)
 
@@ -71,9 +70,9 @@ const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword)
 
             <div className= "col">{loading? (<h4 className="text-danger">Carregando...</h4>) : (<h4>cat C</h4>)}
             <CatForm handleSubmit={handleSubmit} name = {name} setName={setName} />
-            <input type= "search" placeholder= "search" value= {keyword} onChange = {handleSearchChange} className="form-control mb-4" />
+            <LocalSearch keyword={keyword} setKeyword={setKeyword} />
             <hr />
-            {categorias.map((c)=>(<div className = "alert alert-secondary" key={c._id}> {c.name} <span onClick={()=> handleDelete(c.slug)} className = "btn btn-sm float-right"><DeleteOutlined className = "text-danger"/></span> <Link to ={`/admin/categorias/${c.slug}`}><span className = "btn btn-sm float-right"><EditOutlined className = "text-warning"/></span></Link> </div>))}
+            {categorias.filter(searched(keyword)).map((c)=>(<div className = "alert alert-secondary" key={c._id}> {c.name} <span onClick={()=> handleDelete(c.slug)} className = "btn btn-sm float-right"><DeleteOutlined className = "text-danger"/></span> <Link to ={`/admin/categorias/${c.slug}`}><span className = "btn btn-sm float-right"><EditOutlined className = "text-warning"/></span></Link> </div>))}
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ const CatUpdate = ({history, match}) =>{
         loadCat();
     },[]);
 
-    const loadCat = () => getCat(match.params.slug).then(c => setName(c.data.name));
+    const loadCat = () => getCat(match.params.slug).then((c) => setName(c.data.name));
     const handleSubmit = (e) =>{
         e.preventDefault();
         setLoading(true);

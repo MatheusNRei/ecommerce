@@ -20,6 +20,7 @@ import AdminDashboard from './Paginas/Admin/AdminDashboard'
 import AdminCatC from './Paginas/Admin/Categorias/AdminCatC'
 import AdminCatU from './Paginas/Admin/Categorias/AdminCatU'
 import AdminCatC from './Paginas/Admin/SubCat/SubCatC'
+import AdminCatC from './Paginas/Admin/SubCat/SubCatU'
 const App = () => {
  const dispatch= useDispatch()
  
@@ -63,8 +64,9 @@ const App = () => {
    <UserRoute exact path ="/usuario/wishlist" component={Wishlist} />
    <AdminRoute exact path ="/admin/dashboard" component={AdminDashboard} />
    <AdminRoute exact path ="/admin/categorias/" component={AdminCatC} />
-   <AdminRoute exact path ="/admin/categorias/:slug" component={CatUpdate} />
+   <AdminRoute exact path ="/admin/categorias/:slug" component={AdminCatU} />
    <AdminRoute exact path ="/admin/SubCat/" component={SubCatC} />
+   <AdminRoute exact path ="/admin/SubCat/:slug" component={SubCatU} />
  </Switch></>
      )
 }
